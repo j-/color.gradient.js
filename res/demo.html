@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<title>color.gradient.js</title>
+
+<script src="../../color.js/color.js"></script>
+<script src="../color.gradient.js"></script>
+
+<div id="demo" style="width: 200px; height: 200px;"></div>
+
+<script>
+var grad = new Color.Gradient();
+grad.addColorStop(0.0, '#09c');
+grad.addColorStop(0.5, '#00a');
+grad.addColorStop(1.0, 'cyan');
+
+var demo = document.querySelector('#demo');
+
+var RPM = 60;
+var oneTurn = RPM / 60 * 1000;
+
+(function loop () {
+	var turn = (Date.now() % oneTurn) / oneTurn;
+	grad.direction = turn + 'turn';
+	demo.style.backgroundImage = grad;
+	requestAnimationFrame(loop);
+})();
+</script>
